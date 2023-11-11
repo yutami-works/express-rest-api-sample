@@ -78,7 +78,21 @@ app.put(`${basePath}/:id`, (req, res) => {
 // curl -X PUT -H "Content-Type: application/json" -d "{\"name\":\"八柱\"}" http://localhost:3000/api/places/8
 
 // Delete DELETE
+app.delete(`${basePath}/:id`, (req, res) => {
+  const place = places.find((p) => p.id === parseInt(req.params.id));
 
+  // 存在しない場合は404を返す
+  if (!place) {
+    res.status(404).send('Not found');
+  } else {
+    const index = places.indexOf(place);
+    places.splice(index, 1);
+    res.status(200).send(places);
+  }
+});
+
+// Windowsテスト用
+// curl -X DELETE http://localhost:3000/api/places/9
 
 // listen
 app.listen(port, () => {
