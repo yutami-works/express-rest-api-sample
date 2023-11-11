@@ -62,6 +62,20 @@ app.get(`${basePath}/:id`, (req, res) => {
 });
 
 // Update PUT
+app.put(`${basePath}/:id`, (req, res) => {
+  const place = places.find((p) => p.id === parseInt(req.params.id));
+
+  // 存在しない場合は404を返す
+  if (!place) {
+    res.status(404).send('Not found');
+  } else {
+    place.name = req.body.name;
+    res.status(200).send(place);
+  }
+});
+
+// Windowsテスト用
+// curl -X PUT -H "Content-Type: application/json" -d "{\"name\":\"八柱\"}" http://localhost:3000/api/places/8
 
 // Delete DELETE
 
