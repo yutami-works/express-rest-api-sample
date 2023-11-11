@@ -33,7 +33,7 @@ const basePath = '/api/places'; // Router使ってないので
 // Create POST
 app.post(basePath, (req, res) => {
   const place = {
-    id: places.length,
+    id: places.length + 1,
     name: req.body.name
   };
   places.push(place);
