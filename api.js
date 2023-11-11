@@ -1,6 +1,8 @@
 const express = require('express');
+
 const app = express();
 app.use(express.json());
+const hostname = '127.0.0.1';
 const port = 3000;
 
 // サンプルデータ（DBの代わり）
@@ -26,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 /* CRUD */
-const basePath = '/api/place'; // Router使ってないので
+const basePath = '/api/places'; // Router使ってないので
 
 // Create POST
 app.post(basePath, (req, res) => {
@@ -39,7 +41,7 @@ app.post(basePath, (req, res) => {
 });
 
 // Windowsテスト用
-// curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"九十九里\"}" http://localhost:3000/api/place
+// curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"九十九里\"}" http://localhost:3000/api/places
 
 // Read GET
 // all
@@ -66,5 +68,5 @@ app.get(`${basePath}/:id`, (req, res) => {
 
 // listen
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
