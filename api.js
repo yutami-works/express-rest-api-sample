@@ -87,7 +87,7 @@ app.delete(`${basePath}/:id`, (req, res) => {
   } else {
     const index = places.indexOf(place);
     places.splice(index, 1);
-    res.status(200).send(places);
+    res.status(200).send('delete');
   }
 });
 
